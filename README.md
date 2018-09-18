@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/joao-fontenele/simple-go-api)](https://goreportcard.com/report/github.com/joao-fontenele/simple-go-api)
+
 # Simple go http rest api
 
 ## Requirements
