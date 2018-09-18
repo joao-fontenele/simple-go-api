@@ -4,6 +4,9 @@
 *.dll
 *.so
 *.dylib
+!bin/gitkeep
+bin/
+server
 
 # Test binary, build with `go test -c`
 *.test
