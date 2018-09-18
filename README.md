@@ -15,4 +15,4 @@
 
 ## Use the server
 
-- `curl -X GET localhost:8080/hello`
+- `curl -X POST localhost:8080/hello -d '{"name": "JP"}'`
