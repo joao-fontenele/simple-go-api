@@ -24,11 +24,7 @@ func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("GET /hello\n")
 
 	response := helloWorldResponse{Message: "Hello World"}
-	data, err := json.Marshal(response)
-
-	if err != nil {
-		panic("server.helloWorldHandler: could not marshal json response")
-	}
-
-	fmt.Fprint(w, string(data))
+	encoder := json.NewEncoder(w)
+	w.Header().Set("Content-Type", "application/json")
+	encoder.Encode(&response)
 }
