@@ -5,13 +5,13 @@
 ## Requirements
 
 - golang v1.11
+- notify-tools: for inotifywait
 
 ## How to run
 
 - add project directory to GOPATH: `export GOPATH=$GOPATH:$PWD`
-- `go build server # builds server on .`
+- `./reload.sh ./server # nodemon like server`
 - `go install server # builds server binaries on ./bin folder`
-- `./server # runs server`
 
 ## Use the server
 
