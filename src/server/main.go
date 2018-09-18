@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 )
@@ -30,17 +29,10 @@ func main() {
 func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("%v /hello\n", r.Method)
 
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		log.Printf("Error reading body stream")
-		http.Error(w, "Bad request", http.StatusBadRequest)
-		// Body.Close(), to close the request stream, was not called because
-		// apparently ServeHTTP handler already does that automatically
-		return
-	}
-
 	var request helloWorldRequest
-	err = json.Unmarshal(body, &request)
+	decoder := json.NewDecoder(r.Body)
+
+	err := decoder.Decode(&request)
 	if err != nil {
 		log.Printf("Could not unmarshal the body to json")
 		http.Error(w, "Bad request", http.StatusBadRequest)
