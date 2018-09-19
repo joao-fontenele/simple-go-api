@@ -22,6 +22,16 @@ func main() {
 
 	http.HandleFunc("/hello", helloWorldHandler)
 
+	// serve static files
+	http.Handle(
+		// the trailing `/` means this route will handle both `/images` and
+		// `/images/somefile.ext`
+		"/images/",
+		// strip prefix was needed, or else the whole path would be forwarded to the
+		// next handler
+		http.StripPrefix("/images/", http.FileServer(http.Dir("./img"))),
+	)
+
 	log.Printf("Server listening on port %v\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", port), nil))
 }
